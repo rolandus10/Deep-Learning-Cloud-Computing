@@ -10,9 +10,11 @@ Exécuter le code main3.py pour lancer l'application.
 
 # Création image Docker
 
-Vous pouvez créer l'image docker en lancant la commande: #$ docker image build -t projet_deepLearning_cloudComputing:v0.0 .#
+Vous pouvez créer l'image docker en lancant la commande: $ docker image build -t projet_deepLearning_cloudComputing:v0.0 .
 
-puis lancer l'exécution de l'image docker avec la commande:  $ docker run -p 8000:8000 projet_deepLearning_cloudComputing:v0.0
+/!\ Le point à la fin de la commande précedente fait partie de la commande.
+
+Puis lancer l'exécution de l'image docker avec la commande:  $ docker run -p 8000:8000 projet_deepLearning_cloudComputing:v0.0
 
 site web est alors disponible à l'adresse: "votre_IP:8000"
-où "votre_IP" est l'adresse IP de votre pc ou machine virtuelle
+où "votre_IP" est l'adresse IP de votre pc ou machine virtuelle.
