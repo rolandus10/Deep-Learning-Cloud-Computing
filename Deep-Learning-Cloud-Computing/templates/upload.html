@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mystyle.css') }}"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<head>
+<title>CSS Template</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <p>
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                  <ul class=flashes>
+                  {% for message in messages %}
+                    <li>{{ message }}</li>
+                  {% endfor %}
+                  </ul>
+            {% endif %}
+          {% endwith %}
+  </p>
+  <div class="header">
+    <h3>PROJET Multimedia Retrieval & Cloud Computing</h3>
+    <p>Auteurs: <strong>KUE</strong> Guy & <strong>DJAKOU</strong> Herve Patrick </p>
+
+
+  </div>
+<div class="row">
+  <div class="column side" style="background-color:#E6E6FA;">
+
+    <h2>.Utilisation</h2>
+  <p style="color: #4B0082;margin: 10px;padding: 0px;">
+    Pour effectuer une recherche:<br><br>
+    <strong>1>></strong> Sélectionnez l'algorithme de calcul de distance.<br><br>
+    <strong>2>></strong> choisissez le top à afficher.<br><br>
+    <strong>3>></strong> Chargez une image requete puis cliquez sur "Recherche".<br><br>
+  </p>
+{% if courbe %}
+        <h3>.Courbe de rappel et Précision</h3>
+  <div class="column">
+    <img src="{{ url_for('static', filename='uploads/'+courbe )}}" alt="Nature" width="100%" height="100%">
+  </div>
+          <h3>.Image requête:  <u>{{imageRequete}}</u></h3>
+  <div class="column">
+    <img src="{{ url_for('static', filename='uploads/'+imageRequete )}}" alt="Nature"width="60%" height="60%">
+  </div>
+  {% endif %}
+</div>
+  <div class="column middle">
+    <div class="dropdown">
+    <form class="button1" style="cursor: pointer;" action="/" method="POST" enctype="multipart/form-data" >
+      <label style="cursor: pointer;background
+	      color:#FF6347;padding:15px;color: white;" for="file">
+        <i class="material-icons" style="font-size:30px;">download</i>
+        Chargez une image
+        <input  type="file" name="files[]" accept="image/*" required/>
+        <input class="button2" type="submit" value="Recherche"/>
+      </label>
+    </form>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropbtn" style="background-color: #708090;">Calcul de Distance</button>
+      <div class="dropdown-content">
+        <a href="{{ url_for('set_Euclidean')}}">Euclidean</a>
+        <a href="{{ url_for('set_ChiSquare')}}">ChiSquare 2</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="dropbtn"style="background-color: #6A5ACD;">Top Affichage</button>
+      <div class="dropdown-content">
+        <a href="{{ url_for('get_top20')}}">Top 20</a>
+        <a href="{{ url_for('get_top50')}}">Top 50</a>
+        <a href="{{ url_for('get_top100')}}">Top 100</a>
+      </div>
+    </div>
+        <!-- The grid: four columns -->
+  {% if filenames %}
+    <div class="row">
+          {% for filename in filenames %}
+        <div class="column">
+        <img src="{{ url_for('display_image2', filename=filename[1])}}" alt={{filename[1]}} width="300" height="200">
+            <p> Taux de similitude: <strong>{{filename[0]}}</strong> </p>
+	    <p> image: <strong>{{filename[1]}}</strong><p> 
+          </div>
+          {% endfor %}
+    </div>
+  {% endif %}
+  <!-- <div class="column">
+    <img src="iu.jpeg" alt="Nature" width="300" height="200">
+    <p> <u>Taux de similitude</u> </p>
+  </div>
+  <div class="column">
+    <img src="iu.jpeg" alt="Nature" width="300" height="200">
+    <p> <u>Taux de similitude</u> </p>
+  </div>
+  <div class="column">
+    <img src="iu.jpeg" alt="Nature" width="300" height="200">
+    <p> <u>Taux de similitude</u> </p>
+  </div>
+  <div class="column">
+    <img src="iu.jpeg" alt="Nature" width="300" height="200">
+    <p> <u>Taux de similitude</u> </p>
+  </div>
+  <div class="column">
+    <img src="iu.jpeg" alt="Nature" width="300" height="200">
+    <p> <u>Taux de similitude</u> </p>
+  </div>
+  <div class="column">
+    <img src="iu.jpeg" alt="Nature" width="300" height="200">
+    <p> <u>Taux de similitude</u> </p>
+  </div>
+  <div class="column">
+    <img src="iu.jpeg" alt="Nature" width="300" height="200">
+    <p> <u>Taux de similitude</u> </p>
+  </div>
+  <div class="column">
+    <img src="iu.jpeg" alt="Nature" width="300" height="200">
+    <p> <u>Taux de similitude</u> </p>
+  </div>
+  <div class="column">
+    <img src="iu.jpeg" alt="Nature" width="300" height="200">
+    <p> <u>Taux de similitude</u> </p>
+  </div>
+  <div class="column">
+    <img src="iu.jpeg" alt="Nature" width="300" height="200">
+    <p> <u>Taux de similitude</u> </p>
+  </div>
+  <div class="column">
+    <img src="iu.jpeg" alt="Nature" width="300" height="200">
+    <p> <u>Taux de similitude</u> </p>
+  </div>
+  <div class="column">
+    <img src="iu.jpeg" alt="Nature" width="300" height="200">
+    <p> <u>Taux de similitude</u> </p>
+  </div>
+  <div class="column">
+    <img src="iu.jpeg" alt="Nature" width="300" height="200">
+    <p> <u>Taux de similitude</u> </p>
+  </div>
+  <div class="column">
+    <img src="iu.jpeg" alt="Nature" width="300" height="200">
+    <p> <u>Taux de similitude</u> </p>
+  </div>
+  <div class="column">
+    <img src="iu.jpeg" alt="Nature" width="300" height="200">
+    <p> <u>Taux de similitude</u> </p>
+  </div> -->
+  </div>
+</div>
+
+
+</body>
+</html>

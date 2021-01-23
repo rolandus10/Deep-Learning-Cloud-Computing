@@ -1,0 +1,7 @@
+tensorflow
+numpy
+keras
+matplotlib
+sklearn
+flask
+werkzeug
